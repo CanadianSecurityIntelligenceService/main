@@ -4,9 +4,8 @@
   <meta charset="UTF-8">
   <link rel="stylesheet" href="main.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>News | CSIS</title>
+  <title>Home | CSIS</title>
   <style>
-
     body {
       margin: 0;
       font-family: Arial, sans-serif;
@@ -39,7 +38,7 @@
       max-width: 1000px;
       margin: auto;
     }
-    .news-card {
+    .card {
       background: white;
       border: 1px solid #ccc;
       padding: 20px;
@@ -56,54 +55,55 @@
 </head>
 <body>
     <header>
-        <h1>Dynamic News Website</h1>
+        <div class="logo-title">
+            <img src="csis-logo.png" alt="CSIS Logo" class="csis-logo">
+            <span>| Canadian Security Intelligence Service</span>
+        </div>
         <nav>
-          <a href="#">Home</a>
-          <a href="#">About</a>
-          <a href="#">Contact</a>
+          <a href="https://canadiansecurityintelligenceservice.github.io/main/main.html">Home</a>
+          <a href="https://canadiansecurityintelligenceservice.github.io/main/employees.html">Our Employees</a>
+          <a href="https://canadiansecurityintelligenceservice.github.io/main/careers.html">Careers</a>
+          <a href="https://canadiansecurityintelligenceservice.github.io/main/careers.html">Report a Threat</a>
+          <a href="#">Media Room</a>
         </nav>
-    </header>
-    
-    <div class="content" id="news-container">
-      <h2>Latest News</h2>
-      <!-- News articles will be dynamically loaded here -->
-    </div>
+      </header>
+      <div class="content" id="news-container">
+        <h2>Latest News</h2>
+      </div>
+  <footer>
+    © 2025 Ontario Province RP | This is not an official CSIS Website! This website is not to be used for catfishing or malicious purposes. Made for Ontario Province RP.
+  </footer>
+  <script>
+    async function loadNews() {
+    try {
+      // Fetch the local text file
+      const response = await fetch('news.txt');
+      if (!response.ok) throw new Error('Failed to load local file.');
 
-    <footer>
-      © 2025 Dynamic News | Powered by Pastebin
-    </footer>
+      const data = await response.text();
 
-    <script>
-      async function loadNews() {
-      try {
-        // Fetch the local text file
-        const response = await fetch('news.txt');
-        if (!response.ok) throw new Error('Failed to load local file.');
+      // Split the articles based on "nextNews" delimiter
+      const articles = data.split('\n');
+      const newsContainer = document.getElementById('news-container');
 
-        const data = await response.text();
-
-        // Split the articles based on "nextNews" delimiter
-        const articles = data.split('\n');
-        const newsContainer = document.getElementById('news-container');
-
-        articles.forEach((article, index) => {
-          const cleanedArticle = article.trim();
-          if (cleanedArticle) {
-            const newsCard = document.createElement('div');
-            newsCard.className = 'news-card';
-            newsCard.innerHTML = `<h3>Article ${index + 1}</h3><p>${cleanedArticle}</p>`;
-            newsContainer.appendChild(newsCard);
-          }
-        });
-      } catch (error) {
-        console.error('Error loading news:', error);
-        const newsContainer = document.getElementById('news-container');
-        newsContainer.innerHTML = '<p>Sorry, news could not be loaded.</p>';
-      }
+      articles.forEach((article, index) => {
+        const cleanedArticle = article.trim();
+        if (cleanedArticle) {
+          const newsCard = document.createElement('div');
+          newsCard.className = 'news-card';
+          newsCard.innerHTML = `<p>${cleanedArticle}</p>`;
+          newsContainer.appendChild(newsCard);
+        }
+      });
+    } catch (error) {
+      console.error('Error loading news:', error);
+      const newsContainer = document.getElementById('news-container');
+      newsContainer.innerHTML = '<p>Sorry, news could not be loaded.</p>';
     }
+  }
 
-      // Load news on page load
-      window.onload = loadNews;
-    </script>
+    // Load news on page load
+    window.onload = loadNews;
+  </script>
 </body>
 </html>
