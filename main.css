@@ -36,7 +36,6 @@ html, body {
     font-size: 24px; /* Adjust this value to make the text bigger */
     font-weight: bold; /* Optional, if you want it to be bold */
   }
-  <style>
   .content {
     max-width: 1000px;
     margin: auto;
