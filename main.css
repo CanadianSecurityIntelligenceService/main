@@ -1,51 +1,51 @@
 html, body {
-    height: 100%;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .main-container {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-  }
-  
-  .content {
-    flex: 1;
-  }
-  
-  footer {
-    background-color: #333;
-    color: white;
-    padding: 20px;
-    text-align: center;
-    font-size: 16px;
-  }
-  
-  .logo-title {
-    display: flex;
-    align-items: center;
-  }
-  
-  .csis-logo {
-    height:60px;
-    margin-right: 15px;
-  }
-  .logo-title span {
-    font-size: 24px; /* Adjust this value to make the text bigger */
-    font-weight: bold; /* Optional, if you want it to be bold */
-  }
-  .content {
-    max-width: 1000px;
-    margin: auto;
-    padding: 20px;
-  }
-  .card {
-    background: white;
-    border: 1px solid #ccc;
-    margin-bottom: 20px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
-    border-radius: 8px; /* Rounds corners */
-  }
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.content {
+  flex: 1;
+}
+
+footer {
+  background-color: #333;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  font-size: 16px;
+}
+
+.logo-title {
+  display: flex;
+  align-items: center;
+}
+
+.csis-logo {
+  height:60px;
+  margin-right: 15px;
+}
+.logo-title span {
+  font-size: 24px; /* Adjust this value to make the text bigger */
+  font-weight: bold; /* Optional, if you want it to be bold */
+}
+.content {
+  max-width: 1000px;
+  margin: auto;
+  padding: 20px;
+}
+.card {
+  background: white;
+  border: 1px solid #333;
+  margin-bottom: 20px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
+  border-radius: 8px; /* Rounds corners */
+}

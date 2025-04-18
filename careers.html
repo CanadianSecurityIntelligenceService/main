@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <link rel="stylesheet" href="main.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Canadian Security Intelligence Service (CSIS)</title>
+  <title>Careers | CSIS</title>
   <style>
     body {
       margin: 0;
@@ -63,36 +63,58 @@
           <a href="https://canadiansecurityintelligenceservice.github.io/main/main.html">Home</a>
           <a href="https://canadiansecurityintelligenceservice.github.io/main/employees.html">Our Employees</a>
           <a href="https://canadiansecurityintelligenceservice.github.io/main/careers.html">Careers</a>
-          <a href="https://canadiansecurityintelligenceservice.github.io/main/report-threat.html">Report a Threat</a>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLScEC9NI6McseX5gqYxbqjXItugaJKQRupgXTz5mri76aujnjw/viewform">Report a Threat</a>
           <a href="https://canadiansecurityintelligenceservice.github.io/main/news.html">Media & News</a>
         </nav>
       </header>
-      
-
-  <div class="hero">
-  </div>
-  
-
-  <div class="content">
-    <div class="card">
-      <h3>Open Positions</h3>
-      <p>Public Information Officer (PIO) | </p>
-    </div>
-
-    <div class="card">
-      <h3>Our Mission</h3>
-      <p>To collect, analyze, and report security intelligence to the Government of Canada, helping prevent terrorism, espionage, and foreign interference.</p>
-    </div>
-
-    <div class="card">
-      <h3>Join CSIS</h3>
-      <p>Interested in a career in national security? Click "Careers" or click<a href="https://canadiansecurityintelligenceservice.github.io/main/careers.html">here</a>.</p>
-    </div>
-  </div>
-
-
+      <div class="content" id="career-container">
+        <h2>Careers</h2>
+      </div>
   <footer>
     © 2025 Ontario Province RP | This is not an official CSIS Website! This website is not to be used for catfishing or malicious purposes. Made for Ontario Province RP.
   </footer>
+  <script>
+    async function loadNews() {
+      try {
+        const response = await fetch('careers.txt');
+        if (!response.ok) throw new Error('Failed to load local file.');
+
+        const data = await response.text();
+
+        const articles = data.split('nextNews');
+        const newsContainer = document.getElementById('career-container');
+
+        articles.forEach((article) => {
+          const cleanedArticle = article.trim();
+          if (cleanedArticle) {
+            const titleMatch = cleanedArticle.match(/<title>(.*?)<\/title>/);
+            const title = titleMatch ? titleMatch[1] : 'Untitled';
+
+            const content = cleanedArticle.replace(/<title>(.*?)<\/title>/, '').trim();
+
+            const newsCard = document.createElement('div');
+            newsCard.className = 'card';
+            newsCard.innerHTML = `
+  <h3>${title}</h3>
+  <p>${content}</p>
+  <hr>
+  <a href="https://discord.gg/f9JSYG5N5A" target="_blank" style="text-decoration: none; color: blue; font-weight: bold;">
+    Click here to apply!
+  </a>
+`;
+
+            newsContainer.appendChild(newsCard);
+          }
+        });
+      } catch (error) {
+        console.error('Error loading news:', error);
+        const newsContainer = document.getElementById('career-container');
+        newsContainer.innerHTML = '<p>Sorry, careers could not be loaded.</p>';
+      }
+    }
+
+    window.onload = loadNews;
+</script>
+
 </body>
 </html>

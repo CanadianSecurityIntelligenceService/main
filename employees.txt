@@ -1,0 +1,11 @@
+<name>justki_wi, Director</name>
+<image>kiwi.jpg</image>
+nextTeamMember
+<name>WorldEater94_ALT1, Deputy Director</name>
+<image>worldeater.jpg</image>
+nextTeamMember
+<name>ethanjoice113, Associate Director</name>
+<image>ethanjoice.jpg</image>
+nextTeamMember
+<name>LionKing_Ofcl, Associate Director</name>
+<image>lionking.jpg.jpg</image>

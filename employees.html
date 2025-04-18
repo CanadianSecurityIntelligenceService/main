@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="employeestyle.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>News | CSIS</title>
+  <title>Employees | CSIS</title>
   <style>
     body {
       margin: 0;
@@ -67,42 +67,53 @@
           <a href="https://canadiansecurityintelligenceservice.github.io/main/news.html">Media & News</a>
         </nav>
       </header>
-      <div class="content" id="news-container">
-        <h2>Latest News</h2>
+      <div class="content">
+        <h2 class="section-title">Management Team</h2>
+        <div id="career-container" class="card-container">
+        </div>
       </div>
+      
+      
+      
   <footer>
     © 2025 Ontario Province RP | This is not an official CSIS Website! This website is not to be used for catfishing or malicious purposes. Made for Ontario Province RP.
   </footer>
   <script>
-    async function loadNews() {
-  try {
-    const response = await fetch('news.txt');
-    if (!response.ok) throw new Error('Failed to load local file.');
+    async function loadManagementTeam() {
+      try {
+        const response = await fetch('employees.txt');
+        if (!response.ok) throw new Error('Failed to load local file.');
 
-    const data = await response.text();
-    const articles = data.split('\n');
-    const newsContainer = document.getElementById('news-container');
+        const data = await response.text();
+        const teamMembers = data.split('nextTeamMember');
+        const teamContainer = document.getElementById('career-container');
 
-    articles.forEach((article) => {
-  const cleanedArticle = article.trim();
-  if (cleanedArticle) {
-    const newsCard = document.createElement('div');
-    newsCard.className = 'card';
-    newsCard.innerHTML = `<p>${cleanedArticle}</p>`;
-    console.log('News added:', newsCard);
-    newsContainer.appendChild(newsCard);
-  }
-    });
+        teamMembers.forEach((member) => {
+          const cleanedMember = member.trim();
+          if (cleanedMember) {
+            const nameMatch = cleanedMember.match(/<name>(.*?)<\/name>/);
+            const imageMatch = cleanedMember.match(/<image>(.*?)<\/image>/);
+            const name = nameMatch ? nameMatch[1] : 'Unnamed';
+            const imagePath = imageMatch ? imageMatch[1] : 'placeholder.jpg'; 
 
-  } catch (error) {
-    console.error('Error loading news:', error);
-    const newsContainer = document.getElementById('news-container');
-    newsContainer.innerHTML = '<p>Sorry, news could not be loaded.</p>';
-  }
-}
+            const teamCard = document.createElement('div');
+            teamCard.className = 'card';
+            teamCard.innerHTML = `
+              <h3>${name}</h3>
+              <img src="${imagePath}" alt="Image of ${name}" style="width:100%; max-width:300px; display:block; margin:10px auto;">
+            `;
+            teamContainer.appendChild(teamCard);
+          }
+        });
+      } catch (error) {
+        console.error('Error loading team:', error);
+        const teamContainer = document.getElementById('career-container');
+        teamContainer.innerHTML = '<p>Sorry, management team could not be loaded.</p>';
+      }
+    }
 
-window.onload = loadNews;
+    window.onload = loadManagementTeam;
+</script>
 
-  </script>
 </body>
 </html>
