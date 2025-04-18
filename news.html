@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="main.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>News | CSIS</title>
+  <style>
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      color: #222;
+    }
+    header {
+      background-color: #002145;
+      color: white;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 1.8em;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    .content {
+      padding: 40px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .news-card {
+      background: white;
+      border: 1px solid #ccc;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    footer {
+      background-color: #002145;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+    <header>
+        <h1>Dynamic News Website</h1>
+        <nav>
+          <a href="#">Home</a>
+          <a href="#">About</a>
+          <a href="#">Contact</a>
+        </nav>
+    </header>
+    
+    <div class="content" id="news-container">
+      <h2>Latest News</h2>
+      <!-- News articles will be dynamically loaded here -->
+    </div>
+
+    <footer>
+      © 2025 Dynamic News | Powered by Pastebin
+    </footer>
+
+    <script>
+      async function loadNews() {
+      try {
+        // Fetch the local text file
+        const response = await fetch('news.txt');
+        if (!response.ok) throw new Error('Failed to load local file.');
+
+        const data = await response.text();
+
+        // Split the articles based on "nextNews" delimiter
+        const articles = data.split('nextNews');
+        const newsContainer = document.getElementById('news-container');
+
+        articles.forEach((article, index) => {
+          const cleanedArticle = article.trim();
+          if (cleanedArticle) {
+            const newsCard = document.createElement('div');
+            newsCard.className = 'news-card';
+            newsCard.innerHTML = `<h3>Article ${index + 1}</h3><p>${cleanedArticle}</p>`;
+            newsContainer.appendChild(newsCard);
+          }
+        });
+      } catch (error) {
+        console.error('Error loading news:', error);
+        const newsContainer = document.getElementById('news-container');
+        newsContainer.innerHTML = '<p>Sorry, news could not be loaded.</p>';
+      }
+    }
+
+      // Load news on page load
+      window.onload = loadNews;
+    </script>
+</body>
+</html>
