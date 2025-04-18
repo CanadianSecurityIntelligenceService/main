@@ -70,9 +70,9 @@
       <div class="content" id="career-container">
         <h2>Careers</h2>
       </div>
-  <footer>
-    © 2025 Ontario Province RP | This is not an official CSIS Website! This website is not to be used for catfishing or malicious purposes. Made for Ontario Province RP.
-  </footer>
+    <footer>
+      © 2025 Ontario Province RP | This is not an official CSIS Website! This website is not to be used for catfishing or malicious purposes. Made for Ontario Province RP.   <a href="https://discord.gg/f9JSYG5N5A" target="_blank"> Our Discord </a>
+    </footer>
   <script>
     async function loadNews() {
       try {
@@ -81,7 +81,7 @@
 
         const data = await response.text();
 
-        const articles = data.split('nextNews');
+        const articles = data.split('nextCareer');
         const newsContainer = document.getElementById('career-container');
 
         articles.forEach((article) => {
